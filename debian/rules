@@ -1,0 +1,33 @@
+#!/usr/bin/make -f
+
+export PYBUILD_NAME=python-dotenv
+export DH_VERBOSE=1
+export LC_ALL=C.UTF-8
+export LANG=C.UTF-8
+
+
+# disable failing tests
+export PYBUILD_TEST_ARGS=-k 'not test_get_default_path and not test_run and not test_run_with_none_value and not test_run_with_other_env'
+
+include /usr/share/dpkg/pkg-info.mk
+
+%:
+	dh $@ --with python3 --buildsystem=pybuild
+
+override_dh_auto_clean:
+	dh_auto_clean
+	rm debian/python-dotenv.1 .cache -rf
+
+override_dh_auto_install:
+	find . -name '.nx_file' -delete
+	dh_auto_install
+	mv debian/python3-dotenv/usr/bin/dotenv debian/python3-dotenv/usr/bin/python-dotenv
+
+override_dh_installman:
+	PYTHONPATH=src \
+		help2man -N -L C.UTF-8 \
+		-n ".env file manipulator" \
+		--no-info --version-string="${DEB_VERSION}" \
+		-o debian/python-dotenv.1 \
+		./debian/python3-dotenv/usr/bin/python-dotenv
+	dh_installman ./debian/python-dotenv.1

@@ -1,0 +1,19 @@
+# dotenv(1) completion
+# Copyright 2017 Federico Ceratto <federico@debian.org>
+# Distributed under BSD-3-clause license
+
+_dotenv()
+{
+  local cur prev words cword
+  _init_completion || return
+
+  if [[ $cur == -* ]]; then
+    # suggest options
+    COMPREPLY=( $( compgen -W '-f -q --help' -- "$cur" ) )
+  else
+    COMPREPLY=( $( compgen -W 'get list set unset -f -q --help' -- "$cur" ) )
+  fi
+
+  return 0
+} &&
+complete -F _dotenv dotenv

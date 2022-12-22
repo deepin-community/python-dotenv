@@ -1,0 +1,28 @@
+Source: python-dotenv
+Maintainer: Federico Ceratto <federico@debian.org>
+Section: python
+Priority: optional
+Build-Depends: debhelper-compat (= 13), help2man (>= 1.47.1)
+Build-Depends-Indep: dh-python,
+ python3-all,
+ python3-click,
+ python3-mock,
+ python3-ipython,
+ python3-pytest,
+ python3-setuptools,
+ python3-sh
+Standards-Version: 4.5.1
+Homepage: https://github.com/theskumar/python-dotenv
+Vcs-Git: https://salsa.debian.org/debian/python-dotenv.git
+Vcs-Browser: https://salsa.debian.org/debian/python-dotenv
+Testsuite: autopkgtest-pkg-python
+Rules-Requires-Root: no
+
+Package: python3-dotenv
+Architecture: all
+Depends: ${misc:Depends}, ${python3:Depends}
+Description: Get and set values in the .env file in local and production servers
+ Reads key value pairs from the .env file and adds them to environment.
+ variables. It is useful to manage settings during development and in
+ production following the 12-factor principles: http://12factor.net/
+ The executable is named python-dotenv
