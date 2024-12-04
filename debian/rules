@@ -31,3 +31,6 @@ override_dh_installman:
 		-o debian/python-dotenv.1 \
 		./debian/python3-dotenv/usr/bin/python-dotenv
 	dh_installman ./debian/python-dotenv.1
+
+override_dh_installchangelogs:
+	dh_installchangelogs CHANGELOG.md
