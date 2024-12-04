@@ -2,16 +2,15 @@ Source: python-dotenv
 Maintainer: Federico Ceratto <federico@debian.org>
 Section: python
 Priority: optional
-Build-Depends: debhelper-compat (= 13), help2man (>= 1.47.1)
+Build-Depends: debhelper-compat (= 13), help2man (>= 1.47.1), debhelper
 Build-Depends-Indep: dh-python,
  python3-all,
  python3-click,
- python3-mock,
  python3-ipython,
  python3-pytest,
  python3-setuptools,
  python3-sh
-Standards-Version: 4.5.1
+Standards-Version: 4.6.2
 Homepage: https://github.com/theskumar/python-dotenv
 Vcs-Git: https://salsa.debian.org/debian/python-dotenv.git
 Vcs-Browser: https://salsa.debian.org/debian/python-dotenv

@@ -5,7 +5,8 @@ Upstream-Name: python-dotenv
 Files: *
 Copyright: 2013 Jacob Kaplan-Moss
            2013 Ted Tieken
-           2014 Saurabh Kumar
+           2014-2022 Saurabh Kumar
+           2019-2020 Bertrand Bonnefoy-Claudet
 License: BSD-3-clause
 
 Files: debian/*

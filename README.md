@@ -5,7 +5,7 @@
 
 Python-dotenv reads key-value pairs from a `.env` file and can set them as environment
 variables. It helps in the development of applications following the
-[12-factor](http://12factor.net/) principles.
+[12-factor](https://12factor.net/) principles.
 
 - [Getting Started](#getting-started)
 - [Other Use Cases](#other-use-cases)
@@ -146,6 +146,11 @@ $ dotenv set EMAIL foo@example.org
 $ dotenv list
 USER=foo
 EMAIL=foo@example.org
+$ dotenv list --format=json
+{
+  "USER": "foo",
+  "EMAIL": "foo@example.org"
+}
 $ dotenv run -- python foo.py
 ```
 
@@ -158,7 +163,7 @@ The format is not formally specified and still improves over time.  That being s
 
 Keys can be unquoted or single-quoted. Values can be unquoted, single- or double-quoted.
 Spaces before and after keys, equal signs, and values are ignored. Values can be followed
-by a comment.  Lines can start with the `export` directive, which has no effect on their
+by a comment.  Lines can start with the `export` directive, which does not affect their
 interpretation.
 
 Allowed escape sequences:
@@ -179,6 +184,20 @@ second line"
 ```bash
 FOO="first line\nsecond line"
 ```
+
+### Variable without a value
+
+A variable can have no value:
+
+```bash
+FOO
+```
+
+It results in `dotenv_values` associating that variable name with the value `None` (e.g.
+`{"FOO": None}`. `load_dotenv`, on the other hand, simply ignores such variables.
+
+This shouldn't be confused with `FOO=`, in which case the variable is associated with the
+empty string.
 
 ### Variable expansion
 
@@ -211,6 +230,8 @@ defined in the following list:
 -   [dump-env](https://github.com/sobolevn/dump-env)
 -   [environs](https://github.com/sloria/environs)
 -   [dynaconf](https://github.com/rochacbruno/dynaconf)
+-   [parse_it](https://github.com/naorlivne/parse_it)
+-   [python-decouple](https://github.com/HBNetwork/python-decouple)
 
 ## Acknowledgements
 
@@ -222,5 +243,5 @@ people](https://github.com/theskumar/python-dotenv/graphs/contributors).
 [build_status_badge]: https://github.com/theskumar/python-dotenv/actions/workflows/test.yml/badge.svg
 [build_status_link]: https://github.com/theskumar/python-dotenv/actions/workflows/test.yml
 [pypi_badge]: https://badge.fury.io/py/python-dotenv.svg
-[pypi_link]: http://badge.fury.io/py/python-dotenv
+[pypi_link]: https://badge.fury.io/py/python-dotenv
 [python_streams]: https://docs.python.org/3/library/io.html
